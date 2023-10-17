@@ -17,11 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/fakulitas', function(){
-     return view('fakulitas');
+Route::get('/fakulitas', function () {
+    return view('fakulitas');
 });
 
 Route::get('/prodi', function () {
     return view('prodi');
 });
 
+Route::get('/mahasiswa', function () {
+    $data = [
+        ["npm" => 2226250101, "nama" => "Dewa"],
+        ["npm" => 2226250100, "nama" => "Reno"]
+    ];
+    return view('mahasiswa.index')->with('mahasiswa', $data);
+});
