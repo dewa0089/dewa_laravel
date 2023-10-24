@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('nama', 50);
             $table->string('tmpt_lahir', 50);
             $table->date('tgl_lahir');
+            $table->string('foto', 50);
             $table->uuid('prodi_id');
             $table->foreign('prodi_id')->references('id')->on('prodis')->restrictOnDelete()->restrictOnUpdate();
             $table->timestamps();
