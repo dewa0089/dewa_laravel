@@ -21,7 +21,7 @@ class FakulitasController extends Controller
      */
     public function create()
     {
-        //
+        return view("fakulitas.create");
     }
 
     /**
@@ -29,7 +29,16 @@ class FakulitasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        // validasi data input
+        $validasi = $request->validate([
+            "nama" => "required|unique:fakulitas"
+        ]);
+
+        //simpan data ke tabel fakulitas
+        Fakulitas::create($validasi);
+
+        return redirect("fakulitas")-> with("success", "Data Fakulitas berhasil disimpan");
     }
 
     /**

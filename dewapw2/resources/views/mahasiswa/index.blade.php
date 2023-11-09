@@ -6,7 +6,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Fakultas</h4>
+                    <h4 class="card-title">Mahasiswa</h4>
                     <p class="card-description">
                         Ini Adalah Daftar Mahasiswa Universitas Multi Data Palembang
 

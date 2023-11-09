@@ -21,7 +21,7 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        //
+        return view("prodi.create");
     }
 
     /**
@@ -29,7 +29,14 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $validasi = $request->validate([
+            "nama" => "required|unique:prodi"
+        ]);
+
+        //simpan data ke tabel fakulitas
+        Prodi::create($validasi);
+
+        return redirect("prodi")-> with("success", "Data Prodi berhasil disimpan");
     }
 
     /**
