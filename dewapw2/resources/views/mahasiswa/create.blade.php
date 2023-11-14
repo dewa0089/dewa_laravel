@@ -15,7 +15,8 @@
                         @csrf
                         <div class="form-group">
                             <label for="npm">NPM</label>
-                            <input type="text" class="form-control" name="npm" placeholder="NPM Mahasiswa">
+                            <input type="text" class="form-control" name="npm" placeholder="NPM Mahasiswa"
+                                value="{{ old('npm') }}">
                             <label for="nama">Nama Mahasiswa</label>
                             <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
                             <label for="tmpt_lahir">Tempat Lahir</label>
@@ -33,6 +34,21 @@
                                 @endforeach
                             </select>
                             @error('npm')
+                                <label class="text-danger">{{ $message }}</label>
+                            @enderror
+                            @error('nama')
+                                <label class="text-danger">{{ $message }}</label>
+                            @enderror
+                            @error('tmpt_lahir')
+                                <label class="text-danger">{{ $message }}</label>
+                            @enderror
+                            @error('tgl_lahir')
+                                <label class="text-danger">{{ $message }}</label>
+                            @enderror
+                            @error('foto')
+                                <label class="text-danger">{{ $message }}</label>
+                            @enderror
+                            @error('prodi_id')
                                 <label class="text-danger">{{ $message }}</label>
                             @enderror
 

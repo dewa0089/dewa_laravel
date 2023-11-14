@@ -36,14 +36,14 @@ class MahasiswaController extends Controller
             "nama" => "required",
             "tmpt_lahir" => "required",
             "tgl_lahir" => "required",
-            "foto" => "required",
-            "prodi_id" => "required|image",
+            "foto" => "required|image",
+            "prodi_id" => "required",
         ]);
 
         // ambil extensi file foto
         $ext = $request->foto->getClientOriginalExtension();
         // Rename file foto menjadi npm.extensi (cth: 2226250101.png)
-        $validasi["foto"] = $request->npm.".".$ext;
+        $validasi["foto"] = $request->npm . "." . $ext;
         //upload file foto ke dalam folder public/foto
         $request->foto->move(public_path('foto'), $validasi['foto']);
         //simpan data ke tabel mahasiswas
