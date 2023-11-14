@@ -11,6 +11,9 @@
                         Ini Adalah Daftar Mahasiswa Universitas Multi Data Palembang
 
                     </p>
+                    <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-danger btn-icon-text"><i
+                            class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
+                    </a>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>

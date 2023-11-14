@@ -16,12 +16,14 @@
                             <label for="nama">Nama Prodi</label>
                             <input type="text" class="form-control" name="nama" placeholder="Nama Prodi">
                             <br>
+                            <label for="fakulitas">Nama Fakultas</label>
                             <select name="fakulitas_id" class="form-control">
                                 <option selected>Pilih</option>
-                                <option value="1">Informatika</option>
-                                <option value="2">Manajemen</option>
+                                @foreach ($fakulitas as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}></option>
+                                @endforeach
                             </select>
-                            @error('nama')
+                            @error('fakulitas_id')
                                 <label class="text-danger">{{ $message }}</label>
                             @enderror
 

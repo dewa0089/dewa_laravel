@@ -11,8 +11,9 @@ class Prodi extends Model
     use HasFactory, HasUlids;
     protected $table = 'prodis';
 
-    public function fakulitas(){
+    protected $fillable = ['nama', 'fakulitas_id'];
+    public function fakulitas()
+    {
         return $this->belongsTo(Fakulitas::class, 'fakulitas_id');
     }
-
 }

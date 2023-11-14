@@ -1,41 +1,44 @@
 @extends('layout.main')
-@section('title', 'Tambah Prodi')
+@section('title', 'Tambah Mahasiswa')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Tambah Prodi</h4>
+                    <h4 class="card-title">Tambah Mahasiswa</h4>
                     <p class="card-description">
-                        Formulir tambah Prodi
+                        Formulir Tambah Mahasiswa
                     </p>
-                    <form class="forms-sample" method="POST" action="{{ route('prodi.store') }}">
+                    <form class="forms-sample" method="POST" action="{{ route('mahasiswa.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="nama">NPM</label>
+                            <label for="npm">NPM</label>
+                            <input type="text" class="form-control" name="npm" placeholder="NPM Mahasiswa">
+                            <label for="nama">Nama Mahasiswa</label>
                             <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
-                            <label for="nama">Nama Prodi</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
-                            <label for="nama">Tempat Lahir</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
-                            <label for="nama">Tanggal Lahir</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
-                            <label for="nama">Foto</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
+                            <label for="tmpt_lahir">Tempat Lahir</label>
+                            <input type="text" class="form-control" name="tmpt_lahir" placeholder="Tempat Lahir">
+                            <label for="tgl_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir">
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control" name="foto" placeholder="Foto">
                             <br>
+                            <label for="prodi">Nama Prodi</label>
                             <select name="prodi_id" class="form-control">
                                 <option selected>Pilih</option>
-                                <option value="1">Informatika</option>
-                                <option value="2">Manajemen</option>
+                                @foreach ($prodi as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}></option>
+                                @endforeach
                             </select>
-                            @error('nama')
+                            @error('npm')
                                 <label class="text-danger">{{ $message }}</label>
                             @enderror
 
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                        <a href="{{ url('prodi') }}" class="btn btn-light">Batal</a>
+                        <a href="{{ url('mahasiswa') }}" class="btn btn-light">Batal</a>
                     </form>
                 </div>
             </div>
