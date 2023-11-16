@@ -25,6 +25,7 @@
                                     <th>Foto</th>
                                     <th>Nama Prodi</th>
                                     <th>Nama Fakultas</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,10 +35,26 @@
                                         <td>{{ $item['nama'] }}</td>
                                         <td>{{ $item['tmpt_lahir'] }}</td>
                                         <td>{{ $item['tgl_lahir'] }}</td>
-                                        <td><img src="images/{{ $item['foto'] }}" class="rounded-circle" width="70px" />
+                                        <td><img src="foto/{{ $item['foto'] }}" class="rounded-circle" width="70px" />
                                         </td>
                                         <td>{{ $item['prodi']['nama'] }}</td>
                                         <td>{{ $item['prodi']['fakulitas']['nama'] }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{route('mahasiswa.edit', $item->id)}}">
+                                                    <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                </a>
+                                                <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
+
+
+                                                </form>
+                                            </div>
+
+
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -48,4 +65,12 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        @if (Session::get('success'))
+            toastr.success("{{ Session::get('success') }}")
+        @endif
+    </script>
 @endsection
