@@ -38,7 +38,7 @@ class FakulitasController extends Controller
         //simpan data ke tabel fakulitas
         Fakulitas::create($validasi);
 
-        return redirect("fakulitas")-> with("success", "Data Fakulitas berhasil disimpan");
+        return redirect("fakulitas")->with("success", "Data Fakulitas berhasil disimpan");
     }
 
     /**
@@ -52,24 +52,38 @@ class FakulitasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fakulitas $fakulitas)
+    public function edit($id)
     {
-        //
+        // dd($fakulitas);
+        $fakulitas = Fakulitas::find($id);
+        return view('fakulitas.edit')->with('fakulitas', $fakulitas);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fakulitas $fakulitas)
+    public function update(Request $request, $id)
     {
-        //
+        $validasi = $request->validate([
+            "nama" => "required"
+        ]);
+        Fakulitas::find($id)->update($validasi);
+        return redirect('fakulitas')->with('success', 'Data Fakultas Berhasil Di Update');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fakulitas $fakulitas)
+    public function destroy($id)
     {
-        //
+        $fakulitas = Fakulitas::find($id);
+        // dd($fakulitas);
+        $fakulitas->delete();
+        // return response("Data Sudah Berhasil Di Hapus", 200);
+
+        return redirect()->route('fakulitas.index')->with(
+            'success',
+            'Data telah dihapus.'
+        );
     }
 }

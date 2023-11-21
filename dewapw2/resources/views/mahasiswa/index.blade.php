@@ -41,13 +41,15 @@
                                         <td>{{ $item['prodi']['fakulitas']['nama'] }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{route('mahasiswa.edit', $item->id)}}">
+                                                <a href="{{ route('mahasiswa.edit', $item->id) }}">
                                                     <button class="btn btn-success btn-sm mx-3">Edit</button>
                                                 </a>
                                                 <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                                        data-toggle="tooltip" title='Delete'
+                                                        data-nama='{{ $item->nama }}'>Hapus Data</button>
 
 
                                                 </form>

@@ -73,7 +73,17 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        $validasi = $request->validate([
+            "npm" => "required",
+            "nama" => "required",
+            "tmpt_lahir" => "required",
+            "tgl_lahir" => "required",
+            "foto" => "required",
+            "prodi_id" => "required",
+            "fakulitas_id" => "required",
+        ]);
+        Mahasiswa::all()->update($validasi);
+        return redirect('mahasiswa')->with('success', 'Data Fakultas Berhasil Di Update');
     }
 
     /**

@@ -27,6 +27,20 @@
                                 @foreach ($fakulitas as $item)
                                     <tr>
                                         <td>{{ $item['nama'] }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('fakulitas.edit', $item->id) }}">
+                                                    <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                </a>
+                                                <form method="POST" action="{{ route('fakulitas.destroy', $item->id) }}">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
+
+
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -38,4 +52,12 @@
     </div>
 
 
+@endsection
+
+@section('scripts')
+    <script>
+        @if (Session::get('success'))
+            toastr.success("{{ Session::get('success') }}")
+        @endif
+    </script>
 @endsection
