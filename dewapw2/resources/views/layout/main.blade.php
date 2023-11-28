@@ -27,6 +27,13 @@
                 <li class="nav-item sidebar-category">
                     <p>Navigation</p>
                     <span></span>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('home') }}">
+                        <i class="mdi mdi-bank menu-icon"></i>
+                        <span class="menu-title">Dashboard</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('fakulitas') }}">
                         <i class="mdi mdi-bank menu-icon"></i>
@@ -110,9 +117,11 @@
                             </li>
                             <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register
+                                    2
                                 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen
+                            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html">
+                                    Lockscreen
                                 </a></li>
                         </ul>
                     </div>
