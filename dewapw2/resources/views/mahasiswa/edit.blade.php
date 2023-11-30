@@ -28,6 +28,9 @@
                             <label for="tgl_lahir">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir"
                                 value="{{ $mahasiswa->tgl_lahir }}">
+                            <label for="jk">Jenis Kelamin</label>
+                            <input type="text" class="form-control" name="jk" placeholder="Jenis Kelamin"
+                                value="{{ $mahasiswa->jk }}">
                             <label for="foto">Foto</label>
                             <input type="file" class="form-control" name="foto" placeholder="Foto"
                                 value="{{ $mahasiswa->foto }}">

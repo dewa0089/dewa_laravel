@@ -73,12 +73,29 @@
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-                    <figure class="highcharts-figure">
-                        <div id="container"></div>
-                        <p class="highcharts-description">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <figure class="highcharts-figure">
+                                <div id="container"></div>
+                                <p class="highcharts-description">
 
-                        </p>
-                    </figure>
+                                </p>
+                            </figure>
+
+
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <figure class="highcharts-figure">
+                                <div id="container2"></div>
+                                <p class="highcharts-description">
+                                </p>
+                            </figure>
+                        </div>
+                    </div>
+
+
 
                     {{-- CSS --}}
                     <style>
@@ -172,17 +189,72 @@
                                 }
                             },
                             series: [{
-                                name: 'Mahasiswa',
+                                    name: 'Corn',
+                                    data: [406292, 260000, 107000, 68300, 27500, 14500]
+                                },
+                                {
+                                    name: 'Wheat',
+                                    data: [51086, 136000, 5500, 141000, 107180, 77000]
+                                }
+                            ]
+                        });
+
+                        Highcharts.chart('container2', {
+                            chart: {
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Data Jenis Kelamin Mahasiswa'
+                            },
+                            tooltip: {
+                                valueSuffix: '%'
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            plotOptions: {
+                                series: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: [{
+                                        enabled: true,
+                                        distance: 20
+                                    }, {
+                                        enabled: true,
+                                        distance: -60,
+                                        format: '{point.percentage:.1f} Orang',
+                                        style: {
+                                            fontSize: '1.2em',
+                                            textOutline: 'none',
+                                            opacity: 0.7
+                                        },
+                                        filter: {
+                                            operator: '>',
+                                            property: 'percentage',
+                                            value: 10
+                                        }
+                                    }]
+                                }
+                            },
+                            series: [{
+                                name: 'Percentage',
+                                colorByPoint: true,
                                 data: [
-                                    @foreach ($grafik_mhs as $item)
-                                        {{ $item->jumlah }},
+                                    @foreach ($pie_mhs as $item)
+                                        {
+                                            name: '{{ $item->jk }}',
+                                            y: {{ $item->jumlah }}
+                                        },
                                     @endforeach
+
                                 ]
-                            }, ]
+                            }]
                         });
                     </script>
                 </div>
             </div>
         </div>
+
     </div>
+
 @endsection

@@ -21,6 +21,8 @@
                             <input type="text" class="form-control" name="nama" placeholder="Nama Mahasiswa">
                             <label for="tmpt_lahir">Tempat Lahir</label>
                             <input type="text" class="form-control" name="tmpt_lahir" placeholder="Tempat Lahir">
+                            <label for="tmpt_lahir">Jenis Kelamin</label>
+                            <input type="text" class="form-control" name="jk" placeholder="Jenis Kelamin">
                             <label for="tgl_lahir">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir">
                             <label for="foto">Foto</label>

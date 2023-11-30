@@ -22,6 +22,7 @@
                                     <th>Nama</th>
                                     <th>Tempat Lahir</th>
                                     <th>Tanggal Lahir</th>
+                                    <th>Jenis Kelamin</th>
                                     <th>Foto</th>
                                     <th>Nama Prodi</th>
                                     <th>Nama Fakultas</th>
@@ -35,6 +36,7 @@
                                         <td>{{ $item['nama'] }}</td>
                                         <td>{{ $item['tmpt_lahir'] }}</td>
                                         <td>{{ $item['tgl_lahir'] }}</td>
+                                        <td>{{ $item['jk'] }}</td>
                                         <td><img src="foto/{{ $item['foto'] }}" class="rounded-circle" width="70px" />
                                         </td>
                                         <td>{{ $item['prodi']['nama'] }}</td>
