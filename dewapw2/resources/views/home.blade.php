@@ -95,6 +95,15 @@
                         </div>
                     </div>
 
+                    <figure class="highcharts-figure">
+                        <div id="container-jk-prodi"></div>
+                        <p class="highcharts-description">
+
+                        </p>
+                    </figure>
+
+
+
 
 
                     {{-- CSS --}}
@@ -189,14 +198,13 @@
                                 }
                             },
                             series: [{
-                                    name: 'Corn',
-                                    data: [406292, 260000, 107000, 68300, 27500, 14500]
-                                },
-                                {
-                                    name: 'Wheat',
-                                    data: [51086, 136000, 5500, 141000, 107180, 77000]
-                                }
-                            ]
+                                name: 'Mahasiswa',
+                                data: [
+                                    @foreach ($grafik_mhs as $item)
+                                        {{ $item->jumlah }},
+                                    @endforeach
+                                ]
+                            }, ]
                         });
 
                         Highcharts.chart('container2', {
@@ -249,6 +257,66 @@
 
                                 ]
                             }]
+                        });
+
+
+                        Highcharts.chart('container-jk-prodi', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Mahasiswa berdasarkan JK dalam Prodi',
+                                align: 'center'
+                            },
+                            subtitle: {
+                                text: '',
+                                align: 'left'
+                            },
+                            xAxis: {
+                                categories: [
+                                    @foreach ($grafik_jk_prodi as $item)
+                                        '{{ $item->nama }}',
+                                    @endforeach
+
+                                ],
+                                crosshair: true,
+                                accessibility: {
+                                    description: 'Countries'
+                                }
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Mahasiswa'
+                                }
+                            },
+                            tooltip: {
+                                valueSuffix: ' (orang)'
+                            },
+                            plotOptions: {
+                                column: {
+                                    pointPadding: 0.2,
+                                    borderWidth: 0
+                                }
+                            },
+                            series: [{
+                                    name: 'Laki',
+                                    data: [
+                                        @foreach ($grafik_jk_prodi as $item)
+                                            {{ $item->laki }},
+                                        @endforeach
+                                    ]
+                                },
+                                {
+                                    name: 'Perempuan',
+                                    data: [
+                                        @foreach ($grafik_jk_prodi as $item)
+                                            {{ $item->perempuan }},
+                                        @endforeach
+
+                                    ]
+                                }
+                            ]
                         });
                     </script>
                 </div>
