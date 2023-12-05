@@ -20,11 +20,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->group(function () {
+// Admin
+Route::middleware(['auth', 'checkRole:A'])->group(function () {
     Route::resource('fakulitas', FakulitasController::class);
     Route::resource('prodi', ProdiController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
 });
+
+//User
+Route::middleware(['auth', 'checkRole:U'])->group(function () {
+    Route::get('/fakulitas', [FakulitasController::class, 'index'])->name('fakulitas.index');
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+    Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
+});
+
 
 
 // Route::get('/fakulitas', function () {
@@ -50,4 +59,4 @@ Route::middleware('auth')->group(function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['checkRole:A,U'])->name('home');
