@@ -21,18 +21,18 @@ Route::get('/', function () {
 });
 
 // Admin
-Route::middleware(['auth', 'checkRole:A'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::resource('fakulitas', FakulitasController::class);
     Route::resource('prodi', ProdiController::class);
     Route::resource('mahasiswa', MahasiswaController::class);
 });
 
 //User
-Route::middleware(['auth', 'checkRole:U'])->group(function () {
-    Route::get('/fakulitas', [FakulitasController::class, 'index'])->name('fakulitas.index');
-    Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
-    Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
-});
+// Route::middleware(['auth', 'checkRole:U'])->group(function () {
+//     Route::get('/fakulitas', [FakulitasController::class, 'index'])->name('fakulitas.index');
+//     Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+//     Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
+// });
 
 
 

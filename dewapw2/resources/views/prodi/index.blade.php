@@ -11,9 +11,11 @@
                         Ini Adalah Daftar Prodi Universitas Multi Data Palembang
 
                     </p>
-                    <a href="{{ route('prodi.create') }}" class="btn btn-outline-danger btn-icon-text"><i
-                            class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
-                    </a>
+                    @can('create', App\Prodi::class)
+                        <a href="{{ route('prodi.create') }}" class="btn btn-outline-danger btn-icon-text"><i
+                                class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
+                        </a>
+                    @endcan
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -29,14 +31,19 @@
                                         <td>{{ $item['fakulitas']['nama'] }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
+
+
                                                 <a href="{{ route('prodi.edit', $item->id) }}">
-                                                    <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                    @can('update', $item)
+                                                        <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                    @endcan
                                                 </a>
                                                 <form method="POST" action="{{ route('prodi.destroy', $item->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
-
+                                                    @can('delete', $item)
+                                                        <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
+                                                    @endcan
 
                                                 </form>
                                             </div>

@@ -11,9 +11,11 @@
                         Ini Adalah Daftar Fakultas Universitas Multi Data Palembang
 
                     </p>
-                    <a href="{{ route('fakulitas.create') }}" class="btn btn-outline-danger btn-icon-text"><i
-                            class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
-                    </a>
+                    @if (Auth::user()->role == 'A')
+                        <a href="{{ route('fakulitas.create') }}" class="btn btn-outline-danger btn-icon-text"><i
+                                class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
+                        </a>
+                    @endif
 
 
                     <div class="table-responsive">
@@ -28,20 +30,24 @@
                                     <tr>
                                         <td>{{ $item['nama'] }}</td>
                                         <td>
-                                            <div class="d-flex justify-content-center">
-                                                <a href="{{ route('fakulitas.edit', $item->id) }}">
-                                                    <button class="btn btn-success btn-sm mx-3">Edit</button>
-                                                </a>
-                                                <form method="POST" action="{{ route('fakulitas.destroy', $item->id) }}">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus Data</button>
+                                            @if (Auth::user()->role == 'A')
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('fakulitas.edit', $item->id) }}">
+                                                        <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                    </a>
+                                                    <form method="POST"
+                                                        action="{{ route('fakulitas.destroy', $item->id) }}">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger btn-sm">Hapus
+                                                            Data</button>
 
 
-                                                </form>
-                                            </div>
+                                                    </form>
+                                                </div>
                                         </td>
-                                    </tr>
+                                @endif
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

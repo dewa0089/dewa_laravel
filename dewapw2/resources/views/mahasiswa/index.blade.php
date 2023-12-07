@@ -11,9 +11,11 @@
                         Ini Adalah Daftar Mahasiswa Universitas Multi Data Palembang
 
                     </p>
-                    <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-danger btn-icon-text"><i
-                            class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
-                    </a>
+                    @can('create', App\Mahasiswa::class)
+                        <a href="{{ route('mahasiswa.create') }}" class="btn btn-outline-danger btn-icon-text"><i
+                                class="mdi mdi-upload btn-icon-prepend"></i> Tambah Data
+                        </a>
+                    @endcan
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -26,7 +28,9 @@
                                     <th>Foto</th>
                                     <th>Nama Prodi</th>
                                     <th>Nama Fakultas</th>
-                                    <th>Aksi</th>
+                                    @can('create', App\Mahasiswa::class)
+                                        <th>Aksi</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,14 +48,18 @@
                                         <td>
                                             <div class="d-flex justify-content-center">
                                                 <a href="{{ route('mahasiswa.edit', $item->id) }}">
-                                                    <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                    @can('update', $item)
+                                                        <button class="btn btn-success btn-sm mx-3">Edit</button>
+                                                    @endcan
                                                 </a>
                                                 <form method="POST" action="{{ route('mahasiswa.destroy', $item->id) }}">
                                                     @method('delete')
                                                     @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm show_confirm"
-                                                        data-toggle="tooltip" title='Delete'
-                                                        data-nama='{{ $item->nama }}'>Hapus Data</button>
+                                                    @can('delete', $item)
+                                                        <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                                            data-toggle="tooltip" title='Delete'
+                                                            data-nama='{{ $item->nama }}'>Hapus Data</button>
+                                                    @endcan
 
 
                                                 </form>

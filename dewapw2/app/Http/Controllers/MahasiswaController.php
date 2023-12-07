@@ -31,6 +31,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Mahasiswa::class);
         $validasi = $request->validate([
             "npm" => "required|unique:mahasiswas",
             "nama" => "required",
@@ -64,6 +65,7 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
+        $this->authorize('update', $mahasiswa);
         $prodi = Prodi::all();
         return view("mahasiswa.edit")->with("mahasiswa", $mahasiswa)->with("prodi", $prodi);
     }
@@ -100,6 +102,7 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
+        $this->authorize('update', $mahasiswa);
         $mahasiswa->delete();
         // return response("Data Sudah Berhasil Di Hapus", 200);
 

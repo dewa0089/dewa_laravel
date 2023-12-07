@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class FakulitasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('checkRole:A')->except('index');
+    }
     /**
      * Display a listing of the resource.
      */
