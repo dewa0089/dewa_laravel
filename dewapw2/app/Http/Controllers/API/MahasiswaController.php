@@ -26,9 +26,18 @@ class MahasiswaController extends Controller
             "prodi_id" => "required",
 
         ]);
+        // ambil extensi file foto
+        $ext = $request->foto->getClientOriginalExtension();
+        // Rename file foto menjadi npm.extensi (cth: 2226250101.png)
+        $validate["foto"] = $request->npm . "." . $ext;
+        //upload file foto ke dalam folder public/foto
+        $request->foto->move(public_path('foto'), $validate['foto']);
+        //simpan data ke tabel mahasiswas
+        // Mahasiswa::create($validasi);
+        // return redirect("mahasiswa")->with("success", "Data Fakulitas berhasil disimpan");
         Mahasiswa::create($validate);
         $response['success'] = true;
-        $response['message'] = 'Prodi Berhasil Disimpan';
+        $response['message'] = 'Mahasiswa ' . $request->nama . ' Berhasil Disimpan';
         return response()->json($response, Response::HTTP_CREATED);
     }
 }
