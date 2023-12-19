@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fakulitas;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Response;
@@ -52,20 +53,20 @@ class ProdiController extends Controller
     {
         $prodi = Prodi::where('id', $id);
         if (count($prodi->get()) > 0) {
-            $mahasiswa = Mahasiswa::where('mahasiswa_id', $id)->get();
-            if (count($mahasiswa)) {
+            $fakultas = Prodi::where('mahasiswa_id', $id)->get();
+            if (count($fakultas)) {
                 $response['success'] = false;
-                $response['message'] = 'Data Prodi tidak diizinkan dihapus dikarenakan digunakan ditabel prodi.';
+                $response['message'] = 'Data Fakultas tidak diizinkan dihapus dikarenakan digunakan ditabel prodi.';
                 return response()->json($response, Response::HTTP_NOT_FOUND);
             } else {
                 $prodi->delete();
                 $response['success'] = true;
-                $response['message'] = 'Prodi berhasil dihapus.';
+                $response['message'] = 'Fakultas berhasil dihapus.';
                 return response()->json($response, Response::HTTP_OK);
             }
         } else {
             $response['success'] = false;
-            $response['message'] = 'Prodi tidak ditemukan.';
+            $response['message'] = 'Fakultas tidak ditemukan.';
             return response()->json($response, Response::HTTP_NOT_FOUND);
         }
     }
