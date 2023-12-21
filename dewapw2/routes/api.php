@@ -25,10 +25,10 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->get('fakulitas', [FakulitasController::class, 'index']);
-Route::middleware(['auth:sanctum', 'ability:read-fakultas'])->get('fakultas', [FakulitasController::class, 'index']);
-Route::middleware(['auth:sanctum', 'ability:create-fakultas'])->post('fakultas', [FakulitasController::class, 'store']);
-Route::middleware(['auth:sanctum', 'ability:update-fakultas'])->patch('fakultas/{id}', [FakulitasController::class, 'update']);
-Route::middleware(['auth:sanctum', 'ability:delete-fakultas'])->delete('fakultas/{id}', [FakulitasController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'ability:read-fakulitas'])->get('fakulitas', [FakulitasController::class, 'index']);
+Route::middleware(['auth:sanctum', 'ability:create-fakulitas'])->post('fakulitas', [FakulitasController::class, 'store']);
+Route::middleware(['auth:sanctum', 'ability:update-fakulitas'])->patch('fakulitas/{id}', [FakulitasController::class, 'update']);
+Route::middleware(['auth:sanctum', 'ability:delete-fakulitas'])->delete('fakulitas/{id}', [FakulitasController::class, 'destroy']);
 
 //Route get
 // Route::get('fakulitas', [FakulitasController::class, 'index']);
@@ -46,12 +46,8 @@ Route::delete('fakulitas/{id}', [FakulitasController::class, 'destroy']);
 Route::delete('prodi/{id}', [ProdiController::class, 'destroy']);
 
 //Route Post
-Route::post('fakulitas', [FakulitasController::class, 'store']);
+// Route::post('fakulitas', [FakulitasController::class, 'store']);
 
 Route::post('prodi', [ProdiController::class, 'store']);
 
 Route::post('mahasiswa', [MahasiswaController::class, 'store']);
-
-
-
-
